@@ -12,8 +12,9 @@ public class GameManager : MonoBehaviour
     public DataVisualizer visualizer;
     public TextMeshProUGUI dateText;
     private DateTime baseDate = new DateTime(2020, 1, 22);
-    private DateTime currentDate;
+    public DateTime currentDate;
     public Slider mainSlider;
+
 
     
     // Start is called before the first frame update
