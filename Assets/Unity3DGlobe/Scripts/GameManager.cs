@@ -8,9 +8,9 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
-
     public DataVisualizer visualizer;
     public TextMeshProUGUI dateText;
+    public TextMeshProUGUI total;
     private DateTime baseDate = new DateTime(2020, 1, 22);
     public DateTime currentDate;
     public Slider mainSlider;
@@ -21,7 +21,11 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         updateDate(baseDate);
-        mainSlider.onValueChanged.AddListener(delegate { updateDate(baseDate); });
+        mainSlider.onValueChanged.AddListener(delegate {
+                updateDate(baseDate);
+                updateTotal();
+        });
+    
     }
 
     // Update is called once per frame
@@ -36,6 +40,11 @@ public class GameManager : MonoBehaviour
         dateText.text = currentDate.ToString("dd MMMM yyyy");
         visualizer.ActivateSeries((int)mainSlider.value);
   
+    }
+
+    public void updateTotal()
+    {
+        total.text = visualizer.totalSeries[(int)mainSlider.value].ToString("N0");
     }
 
 

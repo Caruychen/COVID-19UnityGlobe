@@ -9,6 +9,7 @@ public class DataVisualizer : MonoBehaviour {
     public GameObject PointPrefab;
     public float ValueScaleMultiplier = 1;
     public GameObject[] seriesObjects;
+    public int[] totalSeries;
     int currentSeries = 0;
 
     public void CreateMeshes(SeriesData[] allSeries)
@@ -106,10 +107,24 @@ public class DataVisualizer : MonoBehaviour {
 
         }
     }
+
+    public void CollateTotals(SeriesData[] allSeries)
+    {
+        totalSeries = new int[allSeries.Length];
+        for (int i = 0; i < allSeries.Length; i++)
+        {
+            totalSeries[i] = allSeries[i].Total;
+        }
+
+    }
+
+
+
 }
 [System.Serializable]
 public class SeriesData
 {
     public string Name;
     public float[] Data;
+    public int Total;
 }

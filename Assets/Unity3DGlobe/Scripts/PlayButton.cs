@@ -10,6 +10,7 @@ public class PlayButton : MonoBehaviour
     private GameManager gameManager;
     private DateTime baseDate = new DateTime(2020, 7, 22);
     public float timeDelay = 0.05f;
+    private int totalDays;
 
     
 
@@ -29,13 +30,14 @@ public class PlayButton : MonoBehaviour
 
     void StartPlay()
     {
-        StartCoroutine(Countdown());
+        totalDays = gameManager.visualizer.seriesObjects.Length;
+        StartCoroutine(Countdown(totalDays));
        
     }
 
 
-    // Starts countdown timer, then initiates target spawning after
-    IEnumerator Countdown()
+    // Starts counting days towards the end
+    IEnumerator Countdown(int endAt)
     {
         int duration = 0;
         do
@@ -45,7 +47,7 @@ public class PlayButton : MonoBehaviour
 
             yield return new WaitForSeconds(timeDelay);
 
-        } while (duration < 195);
+        } while (duration < endAt);
 
 
     }
