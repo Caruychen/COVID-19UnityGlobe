@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraOrbit2 : MonoBehaviour
 {
-    public float MinDistance = 40.0f;
+    public float MinDistance = 30.0f;
     public float MaxDistance = 50.0f;
     float distance= 1000;
     float distanceTarget;
