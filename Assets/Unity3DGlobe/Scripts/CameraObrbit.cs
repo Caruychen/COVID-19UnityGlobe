@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class CameraObrbit : MonoBehaviour {
-    public float MinDistance = 1.0f;
-    public float MaxDistance = 1.3f;
+    public float MinDistance = 50.0f;
+    public float MaxDistance = 51.0f;
     float distance= 1000;
     float distanceTarget;
     Vector2 mouse ;
@@ -11,6 +11,7 @@ public class CameraObrbit : MonoBehaviour {
     Vector2 rotation;
     Vector2 target =new Vector2(Mathf.PI* 3 / 2, Mathf.PI / 6 );
     Vector2 targetOnDown ;
+    Vector3 position;
 
     // Access slider bar click events
     public SliderEvents slider;
@@ -58,7 +59,7 @@ public class CameraObrbit : MonoBehaviour {
         rotation.x += (target.x - rotation.x) * 0.1f;
         rotation.y += (target.y - rotation.y) * 0.1f;
         distance += (distanceTarget - distance) * 0.3f;
-        Vector3 position;
+        
         position.x = distance * Mathf.Sin(rotation.x) * Mathf.Cos(rotation.y);
         position.y = distance * Mathf.Sin(rotation.y);
         position.z = distance * Mathf.Cos(rotation.x) * Mathf.Cos(rotation.y);

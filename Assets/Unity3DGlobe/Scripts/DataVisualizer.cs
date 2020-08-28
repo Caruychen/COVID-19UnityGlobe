@@ -11,6 +11,7 @@ public class DataVisualizer : MonoBehaviour {
     public GameObject[] seriesObjects;
     public int[] totalSeries;
     int currentSeries = 0;
+    private float posScale = 20.2f;
 
     public void CreateMeshes(SeriesData[] allSeries)
     {
@@ -63,9 +64,9 @@ public class DataVisualizer : MonoBehaviour {
     {
         Color valueColor = Colors.Evaluate(value);
         Vector3 pos;
-        pos.x = 0.5f * Mathf.Cos((lng) * Mathf.Deg2Rad) * Mathf.Cos(lat * Mathf.Deg2Rad);
-        pos.y = 0.5f * Mathf.Sin(lat * Mathf.Deg2Rad);
-        pos.z = 0.5f * Mathf.Sin((lng) * Mathf.Deg2Rad) * Mathf.Cos(lat * Mathf.Deg2Rad);
+        pos.x = posScale * Mathf.Cos((lng) * Mathf.Deg2Rad) * Mathf.Cos(lat * Mathf.Deg2Rad);
+        pos.y = posScale * Mathf.Sin(lat * Mathf.Deg2Rad);
+        pos.z = posScale * Mathf.Sin((lng) * Mathf.Deg2Rad) * Mathf.Cos(lat * Mathf.Deg2Rad);
         p.transform.parent = Earth.transform;
         p.transform.position = pos;
         p.transform.localScale = new Vector3(1, 1, Mathf.Max(0.001f, value * ValueScaleMultiplier));

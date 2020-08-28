@@ -8,16 +8,26 @@ public class SliderEvents : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
 {
 
     public bool selected = false;
+    private GameManager gameManager;
+
+    void Start()
+    {
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+    }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        //Debug.Log(this.gameObject.name + " Was Clicked.");
         selected = true;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        //Debug.Log("The mouse click was released");
         selected = false;
+
+        // Detect cursor release on slider if dragged during play, then continue playing data
+        if (!gameManager.paused)
+        {
+            StartCoroutine(gameManager.PlayData(gameManager.totalDays, (int) gameManager.mainSlider.value));
+        }
     }
 }
